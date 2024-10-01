@@ -30,10 +30,10 @@ con el adaptador de red en modo puente para descargar el isc-dhcp-server
 
 ```bash
 sudo apt update
-sudo apt install isc-dhcp-server
+sudo apt install isc-dhcp-server -y
 ```
 
-
+![install](image-2.png)
 
 
 
