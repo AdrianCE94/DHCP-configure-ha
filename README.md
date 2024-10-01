@@ -5,7 +5,7 @@
 
 Configuración de servidor DHCP con failover y relay para alta disponibilidad. En este repositorio, encontrarás scripts y configuraciones para establecer un entorno de DHCP con redundancia y failover, que incluye la configuración de un relay DHCP para encaminar solicitudes DHCP entre subredes. Asegura la disponibilidad del servicio DHCP en tu red.
 
-## STACK 
+## 1.STACK 
 
 - 4 MAQUINAS VIRTUALES (debian12)
   - 1 Servidor DHCP Primario
@@ -16,7 +16,7 @@ Configuración de servidor DHCP con failover y relay para alta disponibilidad. E
 - Virtualbox 7.0 (con extension pack)  
 
 **_NOTA_**: modo promiscuo en las interfaces de red siempre activado
-## TOPOLOGÍA
+## 2.TOPOLOGÍA
 
 DHCPSERVER -> RELAY -> CLIENTE
 
@@ -24,9 +24,9 @@ DHCPERVER RESPALDO
 
 ![top](image-1.png)
 
-## CONFIGURACIÓN DHCP SERVER PRIMARIO
+## 3.CONFIGURACIÓN DHCP SERVER PRIMARIO
 
-con el adaptador de red en modo puente para descargar el isc-dhcp-server
+Con el adaptador de red en modo puente para descargar el isc-dhcp-server
 
 ```bash
 sudo apt update
@@ -36,5 +36,21 @@ sudo apt install isc-dhcp-server -y
 ![install](image-2.png)
 
 
+**_NOTA_**: al comprobar el estado del servicio veras que esta failed , no te preocupes es normal pues no esta configurado .Si utilizamos journalctl -xe o journalctl -u isc-dhcp-server podremos ver el error
+
+![error](image-3.png)
 
 
+Ahora cambiamos el adaptador de red a red interna y configuramos el archivo /etc/network/interfaces
+
+![ipa](image-4.png)
+
+![stato](image-5.png)
+
+En mi caso , voy a asignarle a mi servidor la ip 192.168.1
+Aplicamos los cambios(ctrl 0 + ctrl X) y reiniciamos el servicio
+```bash
+systemctl restart networking.service
+ip a
+ip r
+```
