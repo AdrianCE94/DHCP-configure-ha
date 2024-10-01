@@ -89,8 +89,7 @@ En la maquina cliente, cambiamos el adaptador de red a red interna y vamos a usa
 dhclient -r
 dhclient -v
 ```
-
-![client](image-9.png)
+![alt text](image-9.png)
 ![client2](image-10.png)
 
 aqui podemos ver como el cliente ha obtenido la ip de nuestro servidor dhcp.Le asigna la ip tras una petición de la ip. El servidor recibe una request , hace una offer y el cliente la acepta.
