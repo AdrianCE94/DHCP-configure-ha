@@ -108,14 +108,14 @@ Si vamos al archivo `/var/lib/dhcp/dhcpd.leases` veremos que se ha añadido una 
 
 ## 5. CONFIGURACIÓN DHCP RELAY
 
-
+ ### 5.1 instalación y configuración del relay
 Antes de nada, vamos a instalar el paquete isc-dhcp-relay en nuestra maquina saliendo a internet con adaptador puente.
 
 ```bash
 sudo apt update
 sudo apt install isc-dhcp-relay -y
 ```
-![ipserver](image-12.png)
+![IPSERVER](image-12.png)
 Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1)
 
 ![escucha](image-13.png)
@@ -141,6 +141,7 @@ enp0s8 -> red interna con el cliente
 
 ¡¡¡¡¡¡¡¡¡NO OLVIDAR!!!!!!!
 
+ ### 5.2 configuración de las interfaces de red
 
 Configuramos el archivo `/etc/network/interfaces` para asignarle una ip a la interfaz enp0s3 y a la interfaz enp0s8.
 ```bash
@@ -152,6 +153,8 @@ guardamos los cambios y reiniciamos el servicio de red
 ```bash
 systemctl restart networking.service
 ```
+
+### 5.3 habilitar el forwarding para el reenvio de paquetes entre interfaces de red
 Modificación en /proc/sys/net/ipv4/ip_forward para habilitar el forwarding de paquetes entre interfaces de red.
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -167,4 +170,6 @@ nano /etc/sysctl.conf
 ![descomentar](image-17.png)
 
 descomentar la linea `net.ipv4.ip_forward=1`
+
+### 5.4 Configuración de las rutas estáticas
 
