@@ -36,21 +36,26 @@ sudo apt install isc-dhcp-server -y
 ![install](image-2.png)
 
 
-**_NOTA_**: al comprobar el estado del servicio veras que esta failed , no te preocupes es normal pues no esta configurado .Si utilizamos journalctl -xe o journalctl -u isc-dhcp-server podremos ver el error
+**_NOTA_**: al comprobar el estado del servicio veras que esta failed , no te preocupes es normal pues no esta configurado. Si utilizamos `journalctl -xe` o `journalctl -u isc-dhcp-server` podremos ver el error.
 
 ![error](image-3.png)
 
 
-Ahora cambiamos el adaptador de red a red interna y configuramos el archivo /etc/network/interfaces
+Ahora cambiamos el adaptador de red a red interna y configuramos el archivo `/etc/network/interfaces`
 
+`ip a` para ver nuestras interfaces de red
 ![ipa](image-4.png)
 
 ![stato](image-5.png)
 
-En mi caso , voy a asignarle a mi servidor la ip 192.168.1
-Aplicamos los cambios(ctrl 0 + ctrl X) y reiniciamos el servicio
+En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1
+Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
 ```bash
 systemctl restart networking.service
 ip a
 ip r
 ```
+##3.1 ARCHIVOS DE CONFIGURACION DEL SERVIDOR PRIMARIO
+
+- `/etc/default/isc-dhcp-server` : aquí añadiremos nuestra interfaz “enp0s3” en INTERFACESv4.
+- `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red la mascara y el rango que va a proporcionar de ips.
