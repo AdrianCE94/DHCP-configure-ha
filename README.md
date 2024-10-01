@@ -71,3 +71,13 @@ option routers 192.168.1.1;
 
 **_NOTA_**: es opcional pero se recomienda añadir el option routers, nos servirá posteriormente para el relay.
 
+Por último, reiniciamos el servicio y comprobamos que no haya errores y ya quedaria levantado el servidor primario.
+
+![running](image-8.png)
+
+```bash
+systemctl restart isc-dhcp-server
+systemctl status isc-dhcp-server
+```
+
+**_NOTA_**: `/var/lib/dhcp/dhcpd.leases` : archivo donde se guardan las ips asignadas a los clientes.De momento estará vacío.
