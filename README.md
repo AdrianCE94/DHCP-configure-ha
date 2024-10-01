@@ -198,4 +198,6 @@ En el archivo `/etc/dhcp/dhcpd.conf` añadimos la red2 con su rango de ips y la 
 ```bash
 nano /etc/dhcp/dhcpd.conf
 ```
-![net2](image-22.png)
+---
+Si ahora ponenos en dhcp el cliente solicitara una ip y el relay se encargara de encaminar la petición al servidor dhcp.
+
