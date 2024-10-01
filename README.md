@@ -96,3 +96,12 @@ aqui podemos ver como el cliente ha obtenido la ip de nuestro servidor dhcp.Le a
 
 con `ip a` podemos ver la ip asignada al cliente.
 en mi caso nos ha dado una del rango confiuurado en el servidor.
+
+Si vamos al archivo /var/lib/dhcp/dhcpd.leases veremos que se ha añadido una entrada con la ip asignada al cliente.
+
+![leases](image-11.png)
+
+
+
+## 5.CONFIGURACIÓN DHCP RELAY
+
