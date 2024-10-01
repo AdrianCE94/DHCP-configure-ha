@@ -52,10 +52,22 @@ En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1
 Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
 ```bash
 systemctl restart networking.service
-ip a
-ip r
+ip a #para comprobar que se ha asignado la ip
+ip r #para comprobar la tabla de rutas
 ```
-##3.1 ARCHIVOS DE CONFIGURACION DEL SERVIDOR PRIMARIO
+## 3.1 ARCHIVOS DE CONFIGURACION DEL SERVIDOR PRIMARIO
 
 - `/etc/default/isc-dhcp-server` : aquí añadiremos nuestra interfaz “enp0s3” en INTERFACESv4.
-- `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red la mascara y el rango que va a proporcionar de ips.
+
+![enpose](image-6.png)
+
+- `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red, la mascara y el rango que va a proporcionar de ips.
+
+![range](image-7.png)
+---
+En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 { range 192.168.1.10 192.168.1.50;
+option routers 192.168.1.1;
+}
+
+**_NOTA_**: es opcional pero se recomienda añadir el option routers, nos servirá posteriormente para el relay.
+
