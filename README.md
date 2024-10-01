@@ -81,3 +81,18 @@ systemctl status isc-dhcp-server
 ```
 
 **_NOTA_**: `/var/lib/dhcp/dhcpd.leases` : archivo donde se guardan las ips asignadas a los clientes.De momento estará vacío.
+
+## 4.CONFIGURACIÓN DHCP CLIENT
+
+En la maquina cliente, cambiamos el adaptador de red a red interna y vamos a usar dos comandos para obtener una ip. Recordar que puede ser que necesitemos ejecutar el comando como superusuario.
+```bash
+dhclient -r
+dhclient -v
+```
+
+![compro](image-9.png)
+
+aqui podemos ver como el cliente ha obtenido la ip de nuestro servidor dhcp.Le asigna la ip tras una petición de la ip. El servidor recibe una request , hace una offer y el cliente la acepta.
+
+con `ip a` podemos ver la ip asignada al cliente.
+en mi caso nos ha dado una del rango confiuurado en el servidor.
