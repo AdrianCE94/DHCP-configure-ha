@@ -116,13 +116,55 @@ sudo apt update
 sudo apt install isc-dhcp-relay -y
 ```
 ![ipserver](image-12.png)
-aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1)
+Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1)
 
 ![escucha](image-13.png)
-y la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3)
+Aqui le ponemos la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3)
+
+![opcti](image-14.png)
+En la tercera opcion no añadiremos nada
+
+**_NOTA_**: el fichero donde configuramos el relay es `/etc/default/isc-dhcp-relay` por si después queremos modificar algo.
+---
 Tenemos una máquina virtual con dos adaptadores de red interna, red 1  para el servidor dhcp y red 2 para el cliente.Todo esto tenemos que hacerlo en virtualbox en los ajustes de la configuración de la máquina.
 
 
  `ip a` par ver las interfaces de red -> tenemos enp0s3 y enp0s8
 
+![interfaces](image-15.png)
+
+(tenemos ip porque el dhcp server esta funcionando y la interfaz enp0s3 esta en en la misma red que el servidor)
+
+enp0s3 -> red interna con el servidor dhcp
+
+enp0s8 -> red interna con el cliente
+
+¡¡¡¡¡¡¡¡¡NO OLVIDAR!!!!!!!
+
+
+Configuramos el archivo `/etc/network/interfaces` para asignarle una ip a la interfaz enp0s3 y a la interfaz enp0s8.
+```bash
+nano /etc/network/interfaces
+```
+![asignment](image-16.png)
+
+guardamos los cambios y reiniciamos el servicio de red
+```bash
+systemctl restart networking.service
+```
+Modificación en /proc/sys/net/ipv4/ip_forward para habilitar el forwarding de paquetes entre interfaces de red.
+```bash
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+![echo](image-18.png)
+---
+
+Modificación en /etc/sysctl.conf para habilitar el forwarding de paquetes entre interfaces de red.
+```bash
+nano /etc/sysctl.conf
+```
+![descomentar](image-17.png)
+
+descomentar la linea `net.ipv4.ip_forward=1`
 
