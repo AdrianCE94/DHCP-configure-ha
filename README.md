@@ -90,8 +90,8 @@ dhclient -r
 dhclient -v
 ```
 
-![offer](image-9.png)
-![request](image-10.png)
+![client](image-9.png)
+![client2](image-10.png)
 
 aqui podemos ver como el cliente ha obtenido la ip de nuestro servidor dhcp.Le asigna la ip tras una petición de la ip. El servidor recibe una request , hace una offer y el cliente la acepta.
 
