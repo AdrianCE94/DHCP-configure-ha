@@ -192,4 +192,10 @@ ip route add 192.168.1.0/24 via 192.168.2.100
 ```
 ![ipr2](image-21.png)
 
-### 5.5 Reiniciar el servicio del relay
+### Añadir red2 en el servidor dhcp
+
+En el archivo `/etc/dhcp/dhcpd.conf` añadimos la red2 con su rango de ips y la puerta de enlace.
+```bash
+nano /etc/dhcp/dhcpd.conf
+```
+![net2](image-22.png)
