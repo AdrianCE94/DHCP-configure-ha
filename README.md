@@ -49,9 +49,9 @@ Ahora cambiamos el adaptador de red a red interna y configuramos el archivo `/et
 `ip a` para ver nuestras interfaces de red
 ![ipa](image-4.png)
 
-![stato](image-5.png)
+![alt text](image-19.png)
 
-En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1
+En mi caso , voy a asignarle a mi servidor la ip 192.168.1.100
 Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
 ```bash
 systemctl restart networking.service
@@ -66,12 +66,10 @@ ip r #para comprobar la tabla de rutas
 
 - `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red, la mascara y el rango que va a proporcionar de ips.
 
-![range](image-7.png)
+![range](image-19.png)
 ---
-En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 { range 192.168.1.10 192.168.1.50;
-option routers 192.168.1.1;
-}
-
+En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 
+range 192.168.1.10 192.168.1.50;
 **_NOTA_**: es opcional pero se recomienda añadir el option routers, nos servirá posteriormente para el relay.
 
 Por último, reiniciamos el servicio y comprobamos que no haya errores y ya quedaria levantado el servidor primario.
@@ -147,7 +145,7 @@ Configuramos el archivo `/etc/network/interfaces` para asignarle una ip a la int
 ```bash
 nano /etc/network/interfaces
 ```
-![asignment](image-16.png)
+![alt text](image-16.png)
 
 guardamos los cambios y reiniciamos el servicio de red
 ```bash
@@ -169,6 +167,29 @@ nano /etc/sysctl.conf
 ![descomentar](image-17.png)
 
 descomentar la linea `net.ipv4.ip_forward=1`
+---
+por ultimo en este apartado vamos a añadir la interfaz
+enp0s8 en el archivo `/etc/default/isc-dhcp-relay` para que escuche las peticiones dhcp.
+
+```bash	
+nano /etc/default/isc-dhcp-relay
+```
+![enpose8](image-19.png)
 
 ### 5.4 Configuración de las rutas estáticas
 
+vamos añadir las rutas para que las redes se puedan comunicar entre si.
+
+por un lado en el servidor dhcp primario añadimos la ruta para que la red1 pueda comunicarse con la red2.
+```bash
+ip route add 192.168.2.0/24 via 192.168.1.101
+```
+![ipr1](image-20.png)
+
+por otro lado en el cliente añadimos la ruta para que la red2 pueda comunicarse con la red1.
+```bash
+ip route add 192.168.1.0/24 via 192.168.2.100
+```
+![ipr2](image-21.png)
+
+### 5.5 Reiniciar el servicio del relay
