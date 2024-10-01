@@ -160,13 +160,13 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 ![echo](image-18.png)
 ---
-
+descomentar la linea `net.ipv4.ip_forward=1`
 ```bash
 nano /etc/sysctl.conf
 ```
 ![descomentar](image-17.png)
 
-descomentar la linea `net.ipv4.ip_forward=1`
+
 ---
 por ultimo en este apartado vamos a añadir la interfaz
 enp0s8 en el archivo `/etc/default/isc-dhcp-relay` para que escuche las peticiones dhcp.
