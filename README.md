@@ -155,7 +155,7 @@ systemctl restart networking.service
 ```
 
 ### 5.3 habilitar el forwarding para el reenvio de paquetes entre interfaces de red
-Modificación en /proc/sys/net/ipv4/ip_forward para habilitar el forwarding de paquetes entre interfaces de red.
+Modificación en /proc/sys/net/ipv4/ip_forward
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
@@ -163,7 +163,6 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ![echo](image-18.png)
 ---
 
-Modificación en /etc/sysctl.conf para habilitar el forwarding de paquetes entre interfaces de red.
 ```bash
 nano /etc/sysctl.conf
 ```
