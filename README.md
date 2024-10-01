@@ -202,3 +202,7 @@ nano /etc/dhcp/dhcpd.conf
 Si ahora ponenos en dhcp el cliente solicitara una ip y el relay se encargara de encaminar la petición al servidor dhcp.
 
 ![finrelay](image-23.png)
+
+si usamos dhclient -v en el cliente veremos como el relay le envia la petición al servidor dhcp.
+
+![dhclient](image-24.png)
