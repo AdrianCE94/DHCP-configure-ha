@@ -5,7 +5,7 @@
 
 Configuración de servidor DHCP con failover y relay para alta disponibilidad. En este repositorio, encontrarás scripts y configuraciones para establecer un entorno de DHCP con redundancia y failover, que incluye la configuración de un relay DHCP para encaminar solicitudes DHCP entre subredes. Asegura la disponibilidad del servicio DHCP en tu red.
 
-## 1.STACK 
+## 1. STACK 
 
 - 4 MAQUINAS VIRTUALES (debian12)
   - 1 Servidor DHCP Primario
@@ -16,15 +16,18 @@ Configuración de servidor DHCP con failover y relay para alta disponibilidad. E
 - Virtualbox 7.0 (con extension pack)  
 
 **_NOTA_**: modo promiscuo en las interfaces de red siempre activado
-## 2.TOPOLOGÍA
-
-DHCPSERVER -> RELAY -> CLIENTE
-
-DHCPERVER RESPALDO
+## 2. TOPOLOGÍA Y CONCEPTOS
 
 ![top](image-1.png)
 
-## 3.CONFIGURACIÓN DHCP SERVER PRIMARIO
+DHCPSERVER PRIMARIO -> DHCPSERVER SECUNDARIO (RESPALDO FAILOVER)
+
+DHCPSERVER PRIMARIO -> ROUTER (RELAY) (para encaminar solicitudes DHCP entre subredes)
+
+DHCP CLIENT -> DHCPSERVER PRIMARIO (para obtener una dirección IP)
+
+
+## 3. CONFIGURACIÓN DHCP SERVER PRIMARIO
 
 Con el adaptador de red en modo puente para descargar el isc-dhcp-server
 
@@ -82,7 +85,7 @@ systemctl status isc-dhcp-server
 
 **_NOTA_**: `/var/lib/dhcp/dhcpd.leases` : archivo donde se guardan las ips asignadas a los clientes.De momento estará vacío.
 
-## 4.CONFIGURACIÓN DHCP CLIENT
+## 4. CONFIGURACIÓN DHCP CLIENT
 
 En la maquina cliente, cambiamos el adaptador de red a red interna y vamos a usar dos comandos para obtener una ip. Recordar que puede ser que necesitemos ejecutar el comando como superusuario.
 ```bash
@@ -97,11 +100,29 @@ aqui podemos ver como el cliente ha obtenido la ip de nuestro servidor dhcp.Le a
 con `ip a` podemos ver la ip asignada al cliente.
 en mi caso nos ha dado una del rango confiuurado en el servidor.
 
-Si vamos al archivo /var/lib/dhcp/dhcpd.leases veremos que se ha añadido una entrada con la ip asignada al cliente.
+Si vamos al archivo `/var/lib/dhcp/dhcpd.leases` veremos que se ha añadido una entrada con la ip asignada al cliente.
 
 ![leases](image-11.png)
 
 
 
-## 5.CONFIGURACIÓN DHCP RELAY
+## 5. CONFIGURACIÓN DHCP RELAY
+
+
+Antes de nada, vamos a instalar el paquete isc-dhcp-relay en nuestra maquina saliendo a internet con adaptador puente.
+
+```bash
+sudo apt update
+sudo apt install isc-dhcp-relay -y
+```
+![ipserver](image-12.png)
+aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1)
+
+![escucha](image-13.png)
+y la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3)
+Tenemos una máquina virtual con dos adaptadores de red interna, red 1  para el servidor dhcp y red 2 para el cliente.Todo esto tenemos que hacerlo en virtualbox en los ajustes de la configuración de la máquina.
+
+
+ `ip a` par ver las interfaces de red -> tenemos enp0s3 y enp0s8
+
 
