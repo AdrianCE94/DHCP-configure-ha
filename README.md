@@ -226,7 +226,11 @@ Ahora ya podemos probar nuestro dhcp-server con su relay para ver si funciona co
 nos vamos al cliente y le ponemos una ip dinamica para que la pida por dhcp.Para ello,
 configuramos el archivo `/etc/network/interfaces` :
 ![dhcpclie](image-32.png)
+
+
 restart al servicio de red y comprobamos que no haya errores.
+
+
 ```bash
 systemctl restart networking.service
 ```
@@ -237,7 +241,7 @@ y le pediremos dhclient para que nos de una ip. Haremos dhclient -r y dhclient -
 
 ## 8. CONFIGURACIÓN DHCP SERVER SECUNDARIO (RESPALDO-FAILOVER)
 
-Ya funciona nuestro servidor primario con relay, pero si cae el servidor primario, el servicio de dhcp caerá con él. Para evitar esto, vamos a configurar un servidor secundario que actuará como failover.Con esto conseguiremos que si el servidor primario cae, el secundario seguirá proporcionando ips a los clientes y aseguramos la alta disponibilidad del servicio. Para ella vamos a utilizar la ultima maquina virtual que nos queda.Vamos a salir a internet para instalar el paquete isc-dhcp-server.
+Ya funciona nuestro servidor primario con relay, pero si cae el servidor primario, el servicio de dhcp caerá con él. Para evitar esto, vamos a configurar un servidor secundario que actuará como failover.Con esto conseguiremos que si el servidor primario cae, el secundario seguirá proporcionando ips a los clientes y aseguramos la alta disponibilidad del servicio. Para ella vamos a utilizar la ultima maquina virtual que nos queda.Vamos a salir a internet para instalar el paquete isc-dhcp-server.Después de instalarlo, cambiamos el adaptador de red a red interna(RED1) y configuramos el archivo `/etc/network/interfaces` para asignarle una ip a la interfaz enp0s3.Le daremos la 192.168.1.2/24
 
 ```bash
 sudo apt update
