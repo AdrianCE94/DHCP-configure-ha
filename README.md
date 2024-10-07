@@ -118,11 +118,12 @@ Antes de nada, vamos a instalar el paquete isc-dhcp-relay en nuestra maquina sal
 sudo apt update
 sudo apt install isc-dhcp-relay -y
 ```
-![IPSERVER](image-12.png)
+
+
 Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1) y aprovechamos para añadir la ip del failover que tendra la ip 192.168.1.2 segun nuestro esquema.
 
 ![escucha](image-13.png)
-Aqui le ponemos la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3)
+Aqui le ponemos la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3 Y enp0s8)
 
 ![opcti](image-14.png)
 En la tercera opcion no añadiremos nada
