@@ -49,11 +49,12 @@ Ahora cambiamos el adaptador de red a red interna(le llamaremos RED1) y configur
 `ip a` para ver nuestras interfaces de red
 ![ipa](image-4.png)
 
+En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1 (Cuando utilicemos el relay pondremos la puerta de enlace como la ip del relay)
+Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
 ![netstatic](image-1.png)
 
 
-En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1 (Cuando utilicemos el relay pondremos la puerta de enlace como la ip del relay)
-Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
+
 ```bash
 systemctl restart networking.service
 ip a #para comprobar que se ha asignado la ip
