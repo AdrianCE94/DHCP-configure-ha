@@ -251,7 +251,30 @@ sudo apt update
 sudo apt install isc-dhcp-server -y
 ```
 
+ip statica
 
+![staifailover](image-34.png)
+```bash
+systemctl restart networking.service
+```
+
+Ahora vamos a configurar el archivo `/etc/default/isc-dhcp-server` para añadir nuestra interfaz “enp0s3” en INTERFACESv4.
+
+![failll](image-35.png)
+
+Nos vamos al ficher `/etc/dhcp/dhcpd.conf` y añadimos las subnets igual que en el servidor primario.
+
+![iguaalite](image-36.png)
+
+Como siempre reiniciamos el servicio.Volveremos a editar el archivo `/etc/default/isc-dhcp-server` para el peer EN EL SERVIDOR.
+
+![importantttt](image-37.png)
+
+Por un lado esta configuración.
+
+![importantt](image-38.png)
+
+Comentar # max-lease-time 7200; y añadir el pool de failover como en la imagen
 
 
 
