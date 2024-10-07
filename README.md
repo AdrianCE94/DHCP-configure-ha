@@ -150,7 +150,7 @@ Configuramos el archivo `/etc/network/interfaces` para asignarle una ip a la int
 ```bash
 nano /etc/network/interfaces
 ```
-![alt text](image-16.png)
+![staitc relay](image-16.png)
 
 guardamos los cambios y reiniciamos el servicio de red
 ```bash
