@@ -185,7 +185,7 @@ nano /etc/default/isc-dhcp-relay
 
 Reiniciamos el servicio y comprobamos que no haya errores.
 
-![startrel](image-19.png)
+![alt text](image-27.png)
 ```bash
 
 
