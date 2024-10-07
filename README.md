@@ -66,11 +66,11 @@ ip r #para comprobar la tabla de rutas
 ![enpose](image-6.png)
 
 - `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red, la mascara y el rango que va a proporcionar de ips.
-
-![range](image-19.png)
+![conf](image-19.png)
 ---
 En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 
 range 192.168.1.10 192.168.1.50;
+
 **_NOTA_**: es opcional pero se recomienda añadir el option routers, nos servirá posteriormente para el relay.
 
 Por último, reiniciamos el servicio y comprobamos que no haya errores y ya quedaria levantado el servidor primario.
