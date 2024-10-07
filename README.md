@@ -224,7 +224,7 @@ systemctl status isc-dhcp-server
 
 Ahora ya podemos probar nuestro dhcp-server con su relay para ver si funciona correctamente.
 nos vamos al cliente y le ponemos una ip dinamica para que la pida por dhcp.Para ello,
-configuramos el archivo /etc/network/interfaces:
+configuramos el archivo `/etc/network/interfaces` :
 ![dhcpclie](image-32.png)
 restart al servicio de red y comprobamos que no haya errores.
 ```bash
