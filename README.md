@@ -199,3 +199,53 @@ aqui podemos ver como el cliente tiene conectividad con el servidor dhcp.
 ping a la ip del servidor dhcp
 
 ![pingg](image-29.png)
+
+
+## 7. AÑADIR SUBNET AL SERVIDOR PRIMARIO
+
+Vamos a añadir una subnet al servidor primario para que el relay pueda encaminar las peticiones dhcp entre subredes.
+
+En el archivo `/etc/dhcp/dhcpd.conf` añadimos la subnet que en nuestro caso será 192.168.2.0.
+aqui será importante añadir el option routers con la ip del relay.
+```bash
+nano /etc/dhcp/dhcpd.conf
+```
+
+![restart](image-30.png)
+
+restart al servicio y comprobamos que no haya errores.
+  
+```bash
+systemctl restart isc-dhcp-server
+systemctl status isc-dhcp-server
+```
+
+![statt](image-31.png)
+
+Ahora ya podemos probar nuestro dhcp-server con su relay para ver si funciona correctamente.
+nos vamos al cliente y le ponemos una ip dinamica para que la pida por dhcp.Para ello,
+configuramos el archivo /etc/network/interfaces:
+![dhcpclie](image-32.png)
+restart al servicio de red y comprobamos que no haya errores.
+```bash
+systemctl restart networking.service
+```
+y le pediremos dhclient para que nos de una ip. Haremos dhclient -r y dhclient -v para ver si nos da una ip.Mientras en el servidor haremos tail `-f /var/lib/dhcp/dhcpd.leases` para ver si se ha asignado una ip al cliente.
+
+![FUNCIONA](image-33.png)
+
+
+## 8. CONFIGURACIÓN DHCP SERVER SECUNDARIO (RESPALDO-FAILOVER)
+
+Ya funciona nuestro servidor primario con relay, pero si cae el servidor primario, el servicio de dhcp caerá con él. Para evitar esto, vamos a configurar un servidor secundario que actuará como failover.Con esto conseguiremos que si el servidor primario cae, el secundario seguirá proporcionando ips a los clientes y aseguramos la alta disponibilidad del servicio. Para ella vamos a utilizar la ultima maquina virtual que nos queda.Vamos a salir a internet para instalar el paquete isc-dhcp-server.
+
+```bash
+sudo apt update
+sudo apt install isc-dhcp-server -y
+```
+
+
+
+
+
+
