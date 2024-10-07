@@ -182,9 +182,10 @@ enp0s8 en el archivo `/etc/default/isc-dhcp-relay` para que escuche las peticion
 ```bash	
 nano /etc/default/isc-dhcp-relay
 ```
-![enpose8](image-19.png)
 
 Reiniciamos el servicio y comprobamos que no haya errores.
+
+![start relay](image-19.png)
 ```bash
-![restartrelay](image-26.png)
+
 
