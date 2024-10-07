@@ -44,14 +44,15 @@ sudo apt install isc-dhcp-server -y
 ![error](image-3.png)
 
 
-Ahora cambiamos el adaptador de red a red interna y configuramos el archivo `/etc/network/interfaces`
+Ahora cambiamos el adaptador de red a red interna(le llamaremos RED1) y configuramos el archivo `/etc/network/interfaces`
 
 `ip a` para ver nuestras interfaces de red
 ![ipa](image-4.png)
 
+![netstatic](image-1.png)
 
 
-En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1
+En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1 (Cuando utilicemos el relay pondremos la puerta de enlace como la ip del relay)
 Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
 ```bash
 systemctl restart networking.service
