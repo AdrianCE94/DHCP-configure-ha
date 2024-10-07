@@ -119,7 +119,7 @@ sudo apt update
 sudo apt install isc-dhcp-relay -y
 ```
 
-
+![rel](image-12.png)
 Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1) y aprovechamos para añadir la ip del failover que tendra la ip 192.168.1.2 segun nuestro esquema.
 
 ![escucha](image-13.png)
