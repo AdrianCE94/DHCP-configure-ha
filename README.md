@@ -125,7 +125,6 @@ Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1)
 ![alt text](image-13.png)
 Aqui le ponemos la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3 Y enp0s8)
 
-![opcti](image-14.png)
 En la tercera opcion no añadiremos nada
 
 **_NOTA_**: el fichero donde configuramos el relay es `/etc/default/isc-dhcp-relay` por si después queremos modificar algo.
