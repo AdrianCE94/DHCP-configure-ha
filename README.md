@@ -129,8 +129,8 @@ En la tercera opcion no añadiremos nada
 
 **_NOTA_**: el fichero donde configuramos el relay es `/etc/default/isc-dhcp-relay` por si después queremos modificar algo.
 ---
-Tenemos una máquina virtual con dos adaptadores de red interna, red 1  para el servidor dhcp y red 2 para el cliente.Todo esto tenemos que hacerlo en virtualbox en los ajustes de la configuración de la máquina.
-
+Tenemos una máquina virtual con dos adaptadores de red interna, red 1  para el servidor dhcp y failover y red 2 para el cliente.Todo esto tenemos que hacerlo en virtualbox en los ajustes de la configuración de la máquina.
+![VIPER](image-14.png)
 
  `ip a` par ver las interfaces de red -> tenemos enp0s3 y enp0s8
 
