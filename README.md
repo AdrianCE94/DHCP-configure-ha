@@ -156,6 +156,9 @@ guardamos los cambios y reiniciamos el servicio de red
 ```bash
 systemctl restart networking.service
 ```
+IMPORTANTE: EN NUESTRO SERVIDOR DHCP PONDREMOS COMO GATEWAY LA IP DE LA INTERFAZ ENP0S3 DEL RELAY.
+
+![GATE](image-25.png)
 
 ### 5.3 habilitar el forwarding para el reenvio de paquetes entre interfaces de red
 Modificación en /proc/sys/net/ipv4/ip_forward
