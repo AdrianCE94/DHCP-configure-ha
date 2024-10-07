@@ -68,9 +68,11 @@ ip r #para comprobar la tabla de rutas
 
 - `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red, la mascara y el rango que va a proporcionar de ips.
   ![conf](image-19.png)
----
+
 En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 
 range 192.168.1.10 192.168.1.50;
+---
+
 
 **_NOTA_**: es opcional pero se recomienda añadir el option routers, nos servirá posteriormente para el relay.
 
@@ -87,7 +89,7 @@ systemctl status isc-dhcp-server
 
 ## 4. CONFIGURACIÓN DHCP CLIENT
 
-En la maquina cliente, cambiamos el adaptador de red a red interna y vamos a usar dos comandos para obtener una ip. Recordar que puede ser que necesitemos ejecutar el comando como superusuario.
+En la maquina cliente, cambiamos el adaptador de red a red interna(RED1) y vamos a usar dos comandos para obtener una ip. Recordar que puede ser que necesitemos ejecutar el comando como superusuario.
 ```bash
 dhclient -r
 dhclient -v
@@ -101,6 +103,7 @@ con `ip a` podemos ver la ip asignada al cliente.
 en mi caso nos ha dado una del rango confiuurado en el servidor.
 
 Si vamos al archivo `/var/lib/dhcp/dhcpd.leases` veremos que se ha añadido una entrada con la ip asignada al cliente.
+Podemos usar `tail -f /var/lib/dhcp/dhcpd.leases` para ver en tiempo real las ips asignadas a los clientes.
 
 ![leases](image-11.png)
 
@@ -116,7 +119,7 @@ sudo apt update
 sudo apt install isc-dhcp-relay -y
 ```
 ![IPSERVER](image-12.png)
-Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.100)
+Aqui le asignamos la ip del servidor dhcp primario.(en nuestro caso 192.168.1.1) y aprovechamos para añadir la ip del failover que tendra la ip 192.168.1.2 segun nuestro esquema.
 
 ![escucha](image-13.png)
 Aqui le ponemos la interfaz por la que va a escuchar las peticiones dhcp.(en nuestro caso enp0s3)
