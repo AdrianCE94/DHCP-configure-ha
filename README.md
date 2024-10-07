@@ -177,40 +177,10 @@ nano /etc/sysctl.conf
 
 ---
 por ultimo en este apartado vamos a añadir la interfaz
-enp0s8 en el archivo `/etc/default/isc-dhcp-relay` para que escuche las peticiones dhcp.
+enp0s8 en el archivo `/etc/default/isc-dhcp-relay` para que escuche las peticiones dhcp si no lo hemos hecho ya.
 
 ```bash	
 nano /etc/default/isc-dhcp-relay
 ```
 ![enpose8](image-19.png)
 
-### 5.4 Configuración de las rutas estáticas
-
-vamos añadir las rutas para que las redes se puedan comunicar entre si.
-
-por un lado en el servidor dhcp primario añadimos la ruta para que la red1 pueda comunicarse con la red2.
-```bash
-ip route add 192.168.2.0/24 via 192.168.1.101
-```
-![ipr1](image-20.png)
-
-por otro lado en el cliente añadimos la ruta para que la red2 pueda comunicarse con la red1.
-```bash
-ip route add 192.168.1.0/24 via 192.168.2.100
-```
-![ipr2](image-21.png)
-
-### Añadir red2 en el servidor dhcp
-
-En el archivo `/etc/dhcp/dhcpd.conf` añadimos la red2 con su rango de ips y la puerta de enlace.
-```bash
-nano /etc/dhcp/dhcpd.conf
-```
----
-Si ahora ponenos en dhcp el cliente solicitara una ip y el relay se encargara de encaminar la petición al servidor dhcp.
-
-![finrelay](image-23.png)
-
-si usamos dhclient -v en el cliente veremos como el relay le envia la petición al servidor dhcp.
-
-![dhclient](image-24.png)
