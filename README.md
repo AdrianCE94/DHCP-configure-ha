@@ -67,8 +67,7 @@ ip r #para comprobar la tabla de rutas
 ![enpose](image-6.png)
 
 - `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red, la mascara y el rango que va a proporcionar de ips.
-  ![conf](image-19.png)
-
+![lerases](image-19.png)
 En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 
 range 192.168.1.10 192.168.1.50;
 ---
@@ -295,8 +294,6 @@ Systemctl status isc-dhcp-server
 Con esto ya tendríamos un servidor dhcp con relay y failover para asegurar la alta disponibilidad del servicio. Si el servidor primario cae, el secundario seguirá proporcionando ips a los clientes. Si el relay cae, el servidor primario seguirá proporcionando ips a los clientes de la misma red. Si el cliente se encuentra en otra red, el relay se encargará de encaminar la petición dhcp al servidor primario.
 
 PARANDO EL SERVIDOR PRIMARIO `systemctl stop isc-dhcp-server` y comprobamos que el servidor secundario sigue proporcionando ips a los clientes.
-
-
 
 
 
