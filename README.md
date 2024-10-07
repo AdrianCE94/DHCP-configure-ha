@@ -18,7 +18,7 @@ Configuración de servidor DHCP con failover y relay para alta disponibilidad. E
 **_NOTA_**: modo promiscuo en las interfaces de red siempre activado
 ## 2. TOPOLOGÍA Y CONCEPTOS
 
-![top](image-1.png)
+![TOP](image.png)
 
 DHCPSERVER PRIMARIO -> DHCPSERVER SECUNDARIO (RESPALDO FAILOVER)
 
@@ -49,9 +49,9 @@ Ahora cambiamos el adaptador de red a red interna y configuramos el archivo `/et
 `ip a` para ver nuestras interfaces de red
 ![ipa](image-4.png)
 
-![alt text](image-19.png)
 
-En mi caso , voy a asignarle a mi servidor la ip 192.168.1.100
+
+En mi caso , voy a asignarle a mi servidor la ip 192.168.1.1
 Aplicamos los cambios(ctrl O + ctrl X) y reiniciamos el servicio
 ```bash
 systemctl restart networking.service
