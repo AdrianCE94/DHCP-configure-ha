@@ -189,3 +189,15 @@ Reiniciamos el servicio y comprobamos que no haya errores.
 ```bash
 
 
+## 6. PROBAR CONECTIVIDAD
+
+Ahora vamos a probar la conectividad entre el cliente y el servidor dhcp.Para ello pondremos una ip statica en el cliente y haremos ping al servidor dhcp utilizando como gateway la ip del relay de su red.(red2)
+
+![client](image-28.png)
+aqui podemos ver como el cliente tiene conectividad con el servidor dhcp.
+
+ping a la ip del servidor dhcp
+
+
+
+```bash
