@@ -66,7 +66,7 @@ ip r #para comprobar la tabla de rutas
 ![enpose](image-6.png)
 
 - `/etc/dhcp/dhcpd.conf` : aqui añadiremos en el apartado para una red interna, la red, la mascara y el rango que va a proporcionar de ips.
-![conf](image-19.png)
+  ![conf](image-19.png)
 ---
 En mi caso , subnet 192.168.1.0 netmask 255.255.255.0 
 range 192.168.1.10 192.168.1.50;
