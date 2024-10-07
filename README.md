@@ -266,15 +266,37 @@ Nos vamos al ficher `/etc/dhcp/dhcpd.conf` y añadimos las subnets igual que en 
 
 ![iguaalite](image-36.png)
 
-Como siempre reiniciamos el servicio.Volveremos a editar el archivo `/etc/default/isc-dhcp-server` para el peer EN EL SERVIDOR.
+Como siempre reiniciamos el servicio.Volveremos  a editar el archivo `/etc/default/isc-dhcp-server` para el peer secundario.
 
-![importantttt](image-37.png)
+![important](image-37.png)
 
 Por un lado esta configuración.
 
-![importantt](image-38.png)
+![importanttt](image-38.png)
 
-Comentar # max-lease-time 7200; y añadir el pool de failover como en la imagen
+Por otro lado esta configuración, comentar la línea #range #max-lease-time 7200; y el pool.
+
+Por último reiniciamos el servicio y **EDITAMOS EL FICHERO `/etc/dhcp/dhcpd.conf` DEL SERVIDOR PRIMARIO** para añadir el peer primario.
+
+
+![serve](image-39.png)
+![alt text](image-40.png)
+
+
+AHORA SOLO QUEDARÍA REINICIAR EL SERVICIO EN AMBOS SERVIDORES Y COMPROBAR QUE NO HAYA ERRORES.
+
+```bash
+systemctl restart isc-dhcp-server
+Systemctl status isc-dhcp-server
+```
+
+## 10. CONCLUSIÓN
+
+Con esto ya tendríamos un servidor dhcp con relay y failover para asegurar la alta disponibilidad del servicio. Si el servidor primario cae, el secundario seguirá proporcionando ips a los clientes. Si el relay cae, el servidor primario seguirá proporcionando ips a los clientes de la misma red. Si el cliente se encuentra en otra red, el relay se encargará de encaminar la petición dhcp al servidor primario.
+
+PARANDO EL SERVIDOR PRIMARIO `systemctl stop isc-dhcp-server` y comprobamos que el servidor secundario sigue proporcionando ips a los clientes.
+
+
 
 
 
