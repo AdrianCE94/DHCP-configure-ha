@@ -184,3 +184,7 @@ nano /etc/default/isc-dhcp-relay
 ```
 ![enpose8](image-19.png)
 
+Reiniciamos el servicio y comprobamos que no haya errores.
+```bash
+![restartrelay](image-26.png)
+
