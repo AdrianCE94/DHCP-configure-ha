@@ -186,10 +186,10 @@ nano /etc/default/isc-dhcp-relay
 Reiniciamos el servicio y comprobamos que no haya errores.
 
 ![alt text](image-27.png)
-```bash
 
+---
 
-# 6. PROBAR CONECTIVIDAD
+## 6. PROBAR CONECTIVIDAD
 
 Ahora vamos a probar la conectividad entre el cliente y el servidor dhcp.Para ello pondremos una ip statica en el cliente y haremos ping al servidor dhcp utilizando como gateway la ip del relay de su red.(red2)
 
@@ -198,6 +198,4 @@ aqui podemos ver como el cliente tiene conectividad con el servidor dhcp.
 
 ping a la ip del servidor dhcp
 
-
-
-```bash
+![pingg](image-29.png)
