@@ -290,7 +290,9 @@ PARANDO EL SERVIDOR PRIMARIO `systemctl stop isc-dhcp-server` y comprobamos que 
 ![OLE](image-43.png)
 
 Failover registrando ips en el servidor secundario mientras el primario esta caido.
+
 ![serverof](image-45.png)
+
 ![dd](image-44.png)
 
 
